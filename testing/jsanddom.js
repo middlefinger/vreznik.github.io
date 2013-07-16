@@ -158,7 +158,8 @@
 			},
 			getData: function(){
 				return {
-					
+					"rows": rows,
+					"columns": columns
 				}
 			}
 		};
