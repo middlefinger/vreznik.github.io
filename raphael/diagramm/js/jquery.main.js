@@ -10,7 +10,7 @@ function initChart(){
 	var base = [
 		{
 			date: '01.01.2012',
-			qty: 7
+			qty: 2
 		},
 		{
 			date: '01.01.2012',
