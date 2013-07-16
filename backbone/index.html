@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>Simple app - nodejs,mongodb,backbone</title>
+	<link rel="stylesheet" type="text/css" href="css/all.css" />
+	<script type="text/javascript" src="js/lib/jquery-2.0.2.min.js"></script>
+	<script type="text/javascript" src="js/lib/underscore-min.js"></script>
+	<script type="text/javascript" src="js/lib/backbone-min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="header">
+			<div class="center">
+				<h1>Contact manager</h1>
+			</div>
+		</div>
+		<div id="content">
+			<div class="views">
+				<ul>
+					<li><a href="#" class="grid">Grid</a></li>
+					<li><a href="#" class="list">List</a></li>
+				</ul>
+			</div>
+			<div id="main">
+				<div id="list-of-people"></div>
+			</div>
+		</div>
+		<div id="footer">
+			<div class="center">
+				<ul class="controls">
+					<li><a href="#" class="link-add-person">Add person</a></li>
+					<li><a href="#" class="link-save">Save as PDF</a></li>
+					<li><a href="#" class="link-delete">Delete everyone</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/template" id="tmpl-list">
+		<div>
+			<img src="<%= image %>" alt="img" />
+			<span><strong>Name: </strong><%= name %></span>
+			<span><strong>Email: </strong><%= email %></span>
+			<span><strong>Phone: </strong><%= phone %></span>
+		</div>
+		<span>
+			<a href="#" class="refresh">Refresh</a>
+			<a href="#" class="edit">Edit</a>
+			<a href="#" class="delete">Remove</a>
+		</span>
+	</script>
+	<script type="text/template" id="tmpl-add">
+		<form action="#" class="add-person">
+			<fieldset>
+				<div class="main-info">
+					<div class="col">
+						<img src="<%= image %>" alt="img" />
+					</div>
+					<div class="col">
+						<div class="row">
+							<label for="name"></label>
+							<input type="text" id="name" name="name" value="<%= name %>" />
+						</div>
+						<div class="row">
+							<label for="email"></label>
+							<input type="text" id="email" name="email" value="<%= email %>" />
+						</div>
+						<div class="row">
+							<label for="phone"></label>
+							<input type="text" id="phone" name="phone" value="<%= phone %>" />
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<input type="file" name="image" class="hidden" />
+					<input type="hidden" name="MAX_FILE_SIZE" value="64000" />
+					<a href="#" class="upload">Upload</a>
+					<a href="#" class="save">Save</a>
+					<a href="#" class="close">Close</a>
+				</div>
+			</fieldset>
+		</form>
+	</script>
+</body>
+</html>
