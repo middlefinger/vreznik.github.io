@@ -168,14 +168,83 @@
      // within div1, programatically create a
      // SELECT element (with multiple items) and a button.
      // when the button is clicked write out the name and value of the selected item to the console.
-
+	function createSelectAndButton(){
+		jQuery('#div1').append(
+			jQuery(	'<select id="select" multiple>'+
+					'<option value="item 1">Item 1</option>' +
+					'<option value="item 2">Item 2</option>' +
+					'<option value="item 3">Item 3</option>' +
+					'</select>'),
+			jQuery('<button>Selected value</button>').on('click', function(e){
+				jQuery('#select option:selected').each(function(){
+					console.log('Selected, value =', this.value, ', text =', this.text);
+				});
+				e.preventDefault;
+			})
+		 );
+	}
+	
      // Write 5 different jQuery selectors to retrieve the
      // sample anchor in the markup below.
+	 function getAnchore(){
+		console.log('1.', jQuery('#fizz a.link').attr('href'));
+		console.log('2.', jQuery('a.link:eq(0)').attr('href'));
+		console.log('3.', jQuery('a').filter('.link').attr('href'));
+		console.log('4.', jQuery('.bar .buzz a.link').attr('href'));
+		console.log('5.', jQuery('#fizz a').filter('.link').attr('href'));
+	 }
 
      // Programatically create an array with 5 items.  Create a list item for each item in the array
      // and add the list items to the unordered list with an id of "list1".
+	 function createListItems(){
+		var list = jQuery('#list1'),
+			arr = [];
+			
+		for(var i = 0; i < 5; i++){
+			arr.push('List item ' + i);
+		}
+		
+		jQuery.each(arr, function(ind, item){
+			list.append(jQuery('<li>' + item + '</li>'));
+		});
+	 }
 
      // Use javascript to add a list of checkboxes and 2 links
      // to the div with an id of "foobar"
      // When the first link is clicked, all the checkboxes should be checked (i.e. check all)
      // When the second link is clicked, all the checkboxes should be unchecked (i.e. uncheck all)
+	 function toggleCheck(){
+		var fooBar = jQuery('#foobar');
+		
+		fooBar.append(
+			jQuery(	'<div class="control">' +
+						'<a href="#" class="check">Check All</a>' + 
+						'<a href="#" class="uncheck">Uncheck All</a>' + 
+					'</div>').on('click', '.check, .uncheck', function(e){
+						if(e.target.className == 'check'){
+							fooBar.find('input:checkbox').attr('checked', true);
+						}
+						else if(e.target.className == 'uncheck'){
+							fooBar.find('input:checkbox').attr('checked', false)
+						}
+						
+						e.preventDefault();
+					})
+		);
+		
+		for(var i = 0; i < 10; i++){
+			var name = 'item' + i;
+			jQuery(	'<div class="row">' +
+						'<label for="' + name + '">' + name + '</label>' + 
+						'<input type="checkbox" id="' + name + '" name="' + name + '" />' + 
+					'</div>')
+					.appendTo(fooBar);
+		}
+	 }
+
+	 jQuery(function(){
+		createSelectAndButton();
+		getAnchore();
+		createListItems();
+		toggleCheck();
+	 });
